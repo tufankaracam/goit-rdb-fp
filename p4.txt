@@ -1,0 +1,7 @@
+SELECT 
+    Year,
+    STR_TO_DATE(CONCAT(Year, '-01-01'), '%Y-%m-%d') AS date_jan_1st,
+    CURDATE() AS currentdate,
+    TIMESTAMPDIFF(YEAR, STR_TO_DATE(CONCAT(Year, '-01-01'), '%Y-%m-%d'), CURDATE()) AS year_diff
+FROM 
+    data;

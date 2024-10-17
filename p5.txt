@@ -1,0 +1,16 @@
+DELIMITER //
+
+CREATE FUNCTION calculate_year_diff(year_input INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE year_diff INT;
+    SET year_diff = TIMESTAMPDIFF(YEAR, STR_TO_DATE(CONCAT(year_input, '-01-01'), '%Y-%m-%d'), CURDATE());
+    RETURN year_diff;
+END //
+
+DELIMITER ;
+
+
+
+SELECT Year, calculate_year_diff(Year) AS year_difference FROM data;

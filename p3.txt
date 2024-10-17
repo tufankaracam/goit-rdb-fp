@@ -1,0 +1,16 @@
+SELECT 
+locations.name
+,locations.code
+,numbers.average_number_rabies
+,numbers.min_number_rabies
+,numbers.max_number_rabies
+,numbers.sum_number_rabies
+FROM (SELECT 
+	location_id
+	,AVG(Number_rabies) average_number_rabies
+	,MIN(Number_rabies) min_number_rabies
+	,MAX(Number_rabies) max_number_rabies
+	,SUM(Number_rabies) sum_number_rabies 
+FROM data where Number_rabies > 0 GROUP BY location_id ORDER BY average_number_rabies DESC) numbers
+LEFT JOIN locations ON locations.id = numbers.location_id
+LIMIT 10;

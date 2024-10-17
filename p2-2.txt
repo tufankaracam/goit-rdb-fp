@@ -1,0 +1,11 @@
+# Creating new column for location_id as foreign key
+ALTER TABLE data ADD COLUMN location_id INT, ADD FOREIGN KEY (location_id) REFERENCES locations(id);
+
+# With left join matching location names and updateing location_ids
+UPDATE data LEFT JOIN locations ON locations.name = data.Entity SET data.location_id = locations.id;
+
+# Removed Entity, Code columns and added id column for primary key.
+ALTER TABLE data 
+DROP COLUMN Entity,
+DROP COLUMN Code,
+ADD COLUMN id INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;

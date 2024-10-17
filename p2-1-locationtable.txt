@@ -1,0 +1,13 @@
+# Table For Locations
+CREATE TABLE IF NOT EXISTS locations
+(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    code VARCHAR(255) NULL
+);
+
+# Inserting Unique Locations To New Table
+INSERT INTO locations(name,code) SELECT DISTINCT Entity,Code FROM data;
+
+# Selecting Unique Locations
+select * from locations;
